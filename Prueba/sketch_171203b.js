@@ -196,7 +196,7 @@ cortadores.mover();
                   textFont(fuente4);
                   textSize(20);
    textAlign(CENTER);
-    text("Puntaje "+puntaje,60,50);
+    text(puntaje,60,50);
     
     if(puntaje>=15 && tiempo<width)
 {
@@ -210,7 +210,7 @@ else if(puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
   
         else if(estado==Nivel2){
     background(164,214,233);
-        tiempo=floor(map(millis(),0,60000,0,width));
+        tiempo=map(millis(),0,60000,0,width);
 
 for(  j=0;j<numCazadores;j++){
   cazadores[j].dibujar();
@@ -234,7 +234,7 @@ osos.dibujar();
       textFont(fuente4);
    textSize(20);
    textAlign(CENTER);
-     text("Puntaje "+puntaje,60,50);
+     text(puntaje,60,50);
      
      if(puntaje>=15 && tiempo<width)
 {
@@ -283,7 +283,7 @@ for(  k=0;k<numTortuga;k++){
     textFont(fuente4);
    textSize(20);
    textAlign(CENTER);
-     text("Puntaje "+puntaje,60,50);
+     text(puntaje,60,50);
      
      if(puntaje>=15 && tiempo<width)
 {
