@@ -111,8 +111,6 @@ if(estado==intro){
   }
  if(estado==Intro1){
     background(fondoV);
-        puntajeMalo=0;
-    puntaje=0;
     fill(0,0,0);
     push();
     textFont(fuente1,20);
@@ -128,8 +126,6 @@ if(estado==intro){
   
   if(estado==Intro2){
     background(fondoP);
-    puntajeMalo=0;
-    puntaje=0;
     fill(0,0,0);
     push();
     textFont(fuente1,17);
@@ -144,8 +140,6 @@ if(estado==intro){
   }
    else if(estado==Intro3){
     background(fondoM);
-        puntajeMalo=0;
-    puntaje=0;
     fill(0,0,0);
     push();
     textFont(fuente1,17);
@@ -351,7 +345,7 @@ else if(estado==Intro1) {
   }
 
 else if(estado==Nivel1) {
-
+  print(touch[0].x);
   if(dist(touch[0].x, touch[0].y,cortadores.x,cortadores.y)<40){
     puntaje++;
     cortadores.rebotar();
