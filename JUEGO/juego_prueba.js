@@ -76,7 +76,7 @@ function preload() {
 
 function setup() { 
   createCanvas(windowWidth, windowHeight);
-  estado = Nivel3;
+  estado = Intro;
 
   //console.log("hello");
 
@@ -340,10 +340,9 @@ function mouseReleased() {
     print("clic");
    //text(touch[0].x, width/2, height/2);
     //puntaje++;
-    if (dist(mouseX, mouseY, cortadores.x, cortadores.y)<40) {
+    if (dist(mouseX, mouseY, cortadores.x, cortadores.y)<30) {
       puntaje++;
       cortadores.rebotar();
-      background(255);
     }
   } else if (estado==Intro2) {
     estado=Nivel2;
