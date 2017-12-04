@@ -481,6 +481,8 @@ function osito() {
 
   this.x = width/5;
   this.y = 3*height/4;
+  this.dirX=0;
+  this.dirY=0;
   this.viva = true;
   this.oso= oso;
   this.osoHerido=osoHerido;
@@ -512,8 +514,10 @@ function osito() {
   this.mover=function() {
     print(pRotationX);
     print("----");
-    this.x=map(pRotationX, -90, 90, 0, width);
-    this.y=map(pRotationY, -90, 90, 0, height);
+    this.dirX=map(rotationX, -90, 90, 0, width);
+    this.dirY=map(rotationY, -90, 90, 0, height);
+    this.x=this.x+this.dirX;
+    this.y=this.y+this.dirY;
   }
 }
 
