@@ -643,6 +643,7 @@ function hombreCorta(){
   this.dirX=0.1;
   this.dirY=10;
   this.leñador=leñador;
+  this.rebote=false;
   this.dibujar=function(){
     imageMode(CENTER);
     image(this.leñador,this.x,this.y,30,40);
@@ -683,10 +684,17 @@ function hombreCorta(){
           
         }
       }
+      this.rebote=false;
       }
       }
       
+      this.rebotar=function(){
+        this.rebote=true;
+        
+      }
+      
 }
+
 
 
 
