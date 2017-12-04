@@ -177,13 +177,9 @@ function draw() {
       {
 
         estado=Intro2;
-
-
       } else if (puntajeMalo1>10)
       {
         estado=perder;
-
-
       }
     }
 
@@ -195,14 +191,14 @@ function draw() {
     text(puntaje1, 60, 50);
   } else if (estado==Nivel2) {
     background(164, 214, 233);
-
+    mamas.mover();
+    osos.dibujar();
+    osos.mover();
 
     for (j=0; j<numCazadores; j++) {
       cazadores[j].dibujar();
       cazadores[j].mover();
-      mamas.mover();
-      osos.dibujar();
-      osos.mover();
+
       if (dist(cazadores[j].x, cazadores[j].y, osos.x, osos.y) < 20 && osos.viva) {
         osos.morir();
       }
@@ -215,73 +211,71 @@ function draw() {
     } 
 
     if (osos.viva==false) {
-      
+
       estado=perder;
     }
-
-
   } /*else if (estado==Nivel3) {
-    background(167, 207, 159);
-
-    for (  k=0; k<numTortuga; k++) {
-      tortugas[k].dibujar();
-      tortugas[k].mover();
-      for (l=0; l<numPez; l++) {
-        peces[l].dibujar();
-        peces[l].mover();
-        for (m=0; m<numBolsa; m++) {
-          bolsas[m].dibujar();
-          bolsas[m].mover();
-
-          if (dist(tortugas[k].x, tortugas[k].y, bolsas[m].x, bolsas[m].y)<10 && bolsas[m].viva) {
-            bolsas[m].partir();
-            tortugas[k].enfermar();
-            tortugas.enfermedad++;
-            if (tortugas.enfermedad>5) {
-              tortugas.morir();
-              puntajeMalo3++;
-            }
-          }
-        }
-      }
-    }
-
-    if (puntaje3>=15)
-    {
-      estado=ganar;
-      puntaje1=0;
-      puntajeMalo1=0;
-      puntaje2=0;
-      puntajeMalo2=0;
-      puntaje3=0;
-      puntajeMalo3=0;
-    } else if (puntajeMalo3>10)
-    {
-      estado=perder;
-
-    }
-
-    if (puntaje3>=15)
-    {
-      estado=ganar;
-    } 
-
-    fill(0, 0, 0);
-    textFont(fuente4);
-    textSize(30);
-    textAlign(CENTER);
-    text(puntaje3, 60, 50);
-    
-  } */
+   background(167, 207, 159);
+   
+   for (  k=0; k<numTortuga; k++) {
+   tortugas[k].dibujar();
+   tortugas[k].mover();
+   for (l=0; l<numPez; l++) {
+   peces[l].dibujar();
+   peces[l].mover();
+   for (m=0; m<numBolsa; m++) {
+   bolsas[m].dibujar();
+   bolsas[m].mover();
+   
+   if (dist(tortugas[k].x, tortugas[k].y, bolsas[m].x, bolsas[m].y)<10 && bolsas[m].viva) {
+   bolsas[m].partir();
+   tortugas[k].enfermar();
+   tortugas.enfermedad++;
+   if (tortugas.enfermedad>5) {
+   tortugas.morir();
+   puntajeMalo3++;
+   }
+   }
+   }
+   }
+   }
+   
+   if (puntaje3>=15)
+   {
+   estado=ganar;
+   puntaje1=0;
+   puntajeMalo1=0;
+   puntaje2=0;
+   puntajeMalo2=0;
+   puntaje3=0;
+   puntajeMalo3=0;
+   } else if (puntajeMalo3>10)
+   {
+   estado=perder;
+   
+   }
+   
+   if (puntaje3>=15)
+   {
+   estado=ganar;
+   } 
+   
+   fill(0, 0, 0);
+   textFont(fuente4);
+   textSize(30);
+   textAlign(CENTER);
+   text(puntaje3, 60, 50);
+   
+   } */
   else if (estado==ganador)
   {
-      estado=ganar;
-      puntaje1=0;
-      puntajeMalo1=0;
-      puntaje2=0;
-      puntajeMalo2=0;
-      puntaje3=0;
-      puntajeMalo3=0;
+    estado=ganar;
+    puntaje1=0;
+    puntajeMalo1=0;
+    puntaje2=0;
+    puntajeMalo2=0;
+    puntaje3=0;
+    puntajeMalo3=0;
     background(ganar);
     fill(0, 0, 0);
     push();
@@ -296,13 +290,13 @@ function draw() {
     pop();
   } else if (estado==perdedor)
   {
-      estado=ganar;
-      puntaje1=0;
-      puntajeMalo1=0;
-      puntaje2=0;
-      puntajeMalo2=0;
-      puntaje3=0;
-      puntajeMalo3=0;
+    estado=ganar;
+    puntaje1=0;
+    puntajeMalo1=0;
+    puntaje2=0;
+    puntajeMalo2=0;
+    puntaje3=0;
+    puntajeMalo3=0;
     background(perder);
     fill(0, 0, 0);
     push();
@@ -350,15 +344,15 @@ function mouseReleased() {
     estado=Intro1;
   } else if (estado==Intro1) {
     estado=Nivel1;
-  }  else if (estado==Intro2) {
+  } else if (estado==Intro2) {
     estado=Nivel2;
   } else if (estado==Intro3) {
     estado=Nivel3;
   } else if (estado==perdedor ||estado==ganador) {
     estado=intro;
   }
-  
-     if (estado==Nivel1) {
+
+  if (estado==Nivel1) {
 
 
     if (dist(mouseX, mouseY, cortadores.x, cortadores.y)<40) {
@@ -370,24 +364,24 @@ function mouseReleased() {
 }
 /*
 function touchMoved() {
-
-  if (estado==Nivel3) {
-    for (l=0; l<numPez; l++) {
-      for (m=0; m<numBolsa; m++) {
-
-        if (dist(touch[0].x, touch[0].y, bolsas[m].x, bolsas[m].y)<20 && bolsas[m].viva) {
-          bolsas[m].partir();
-          puntaje3++;
-        }
-        if (dist(touch[0].x, touch[0].y, peces[l].x, peces[l].y)<20 && peces[l].viva) {
-          peces[l].morir();
-          puntajeMalo3++;
-        }
-      }
-    }
-  }
-  return false;
-}*/
+ 
+ if (estado==Nivel3) {
+ for (l=0; l<numPez; l++) {
+ for (m=0; m<numBolsa; m++) {
+ 
+ if (dist(touch[0].x, touch[0].y, bolsas[m].x, bolsas[m].y)<20 && bolsas[m].viva) {
+ bolsas[m].partir();
+ puntaje3++;
+ }
+ if (dist(touch[0].x, touch[0].y, peces[l].x, peces[l].y)<20 && peces[l].viva) {
+ peces[l].morir();
+ puntajeMalo3++;
+ }
+ }
+ }
+ }
+ return false;
+ }*/
 
 
 function basura() {
@@ -484,8 +478,8 @@ function osito() {
 
   this.dibujar=function()
   {
-    if (this.viva) {
-      if (this.herida) {
+    if (this.viva==true) {
+      if (this.herida==true) {
         imageMode(CENTER);
         image(this.osoHerido, this.x, this.y, 40, 40);
       } else if (this.herida==false) {
@@ -504,27 +498,26 @@ function osito() {
   }
 
   this.mover=function() {
-if(this.viva||this.herida){
-  
+    if (this.viva||this.herida) {
+
       this.x=this.x+this.dirX;
-    this.y=this.y+this.dirY;
-    this.dirX=map(rotationX, -90, 90, 1, -1);
-    this.dirY=map(rotationY, -90, 90, 1, -1);
-    if (this.x>width) {
-      this.x=20;
+      this.y=this.y+this.dirY;
+      this.dirX=map(rotationX, -90, 90, 1, -1);
+      this.dirY=map(rotationY, -90, 90, 1, -1);
+      if (this.x>width) {
+        this.x=20;
+      }
+      if (this.x<0) {
+        this.x=width-20;
+      }
+      if (this.y>height) {
+        this.y=20;
+      }
+      if (this.y<0) {
+        this.y=height-20;
+      }
     }
-    if (this.x<0) {
-      this.x=width-20;
-    }
-    if (this.y>height) {
-      this.y=20;
-    }
-    if (this.y<0) {
-      this.y=height-20;
-    }
-  
   }
-}
 }
 function MamaO() {
   this.x=4*width/5;
