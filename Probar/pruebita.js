@@ -201,7 +201,8 @@ function draw() {
       cazadores[j].dibujar();
       cazadores[j].mover();
       mamas.mover();
-      osos.dibujar();        
+      osos.dibujar();
+      osos.mover();
       if (dist(cazadores[j].x, cazadores[j].y, osos.x, osos.y) < 10 && osos.viva) {
         osos.enfermar();
         osos.muerto++;
@@ -213,10 +214,10 @@ function draw() {
     }
 
 
-    if (puntaje>=15 && tiempo<width)
+    if (dist(osos.x,osos.y,mamas.x,mamas.y)<10)
     {
       estado=Intro3;
-    } else if (puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
+    } else if (puntajeMalo>10 && tiempo>=width)
     {
       estado=perder;
     }
@@ -513,7 +514,9 @@ function osito() {
   }
 
   this.mover=function() {
-    this.x=map(rotationX, -180, 180, 0, width);
+    print(rotationX);
+    print("----");
+    this.x=map(rotationX, -90, 90, 0, width);
     this.y=map(rotationY, -90, 90, 0, height);
   }
 }
