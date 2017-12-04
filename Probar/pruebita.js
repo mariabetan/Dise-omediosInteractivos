@@ -155,7 +155,7 @@ if(estado==intro){
      push();
     textFont(fuente4,15);
     textAlign(CENTER);
-    text('¡Rompe las bolsas y ciudado, no vayas a matar a un pez!',width/2,height/7);
+    text('¡Rompe las bolsas y ciudado, no vayas a matar a un pez!',width/2,height/4);
     pop();
   }
   
@@ -342,7 +342,28 @@ push();
 
 
 function touchStarted() {
-  if (estado==intro) {
+
+  //return false;
+}
+
+function touchMoved() {
+    if (estado==Nivel3) {
+
+    for(l=0;l<numPez;l++){
+          for(m=0;m<numBolsa;m++){
+
+            if(dist(touch[0].x, touch[0].y, bolsas[m].x, bolsas[m].y)<20 && bolsas[m].viva){
+            bolsas[m].partir();
+            puntaje++;
+            }
+            if(dist(touch[0].x, touch[0].y, peces[l].x, peces[l].y)<20 && peces[l].viva){
+            peces[l].morir();
+            puntajeMalo++;
+            }
+          }
+    }
+  }
+    if (estado==intro) {
     estado=Intro1;
   } 
 else if(estado==Intro1) {
@@ -371,26 +392,6 @@ else if(estado==Intro3) {
 
 else if(estado==perdedor ||estado==ganador) {
     estado=intro;
-  }
-  return false;
-}
-
-function touchMoved() {
-    if (estado==Nivel3) {
-
-    for(l=0;l<numPez;l++){
-          for(m=0;m<numBolsa;m++){
-
-            if(dist(touch[0].x, touch[0].y, bolsas[m].x, bolsas[m].y)<20 && bolsas[m].viva){
-            bolsas[m].partir();
-            puntaje++;
-            }
-            if(dist(touch[0].x, touch[0].y, peces[l].x, peces[l].y)<20 && peces[l].viva){
-            peces[l].morir();
-            puntajeMalo++;
-            }
-          }
-    }
   }
     return false;
 }
