@@ -314,7 +314,7 @@ function draw() {
 
 
 
-function touchStarted() {
+function touchEnded() {
   if (estado==intro) {
     estado=Intro1;
   } else if (estado==Intro1) {
