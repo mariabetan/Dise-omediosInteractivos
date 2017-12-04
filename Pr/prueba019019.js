@@ -45,8 +45,6 @@ var fuente2;
 var fuente3;
 var fuente4;
 var puntaje=0;
-var tiempo=0;
-var tiempo2=0;
 var puntajeMalo=0;
 
 
@@ -172,24 +170,19 @@ function draw() {
 
 
 
-      if (puntaje>=15 && tiempo<width)
+      if (puntaje>=15)
       {
         puntaje=0;
         puntajeMalo=0;
         estado=Intro2;
-      } else if (puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
+      } else if (puntajeMalo>10)
       {
         estado=perder;
         puntaje=0;
         puntajeMalo=0
       }
     }
-    push();
-    tiempo=map(millis(), 0, 60000, 0, width);
-    push();
-    fill(0, 0, 0);
-    rect(width, height-30, width-tiempo, 50);
-    pop();
+
     stroke(0);
     fill(0, 0, 0);
     textFont(fuente4);
@@ -199,7 +192,7 @@ function draw() {
   } 
   else if (estado==Nivel2) {
     background(164, 214, 233);
-    tiempo=map(millis(), 0, 60000, 0, width);
+
 
     for (j=0; j<numCazadores; j++) {
       cazadores[j].dibujar();
@@ -224,17 +217,13 @@ function draw() {
           osos.morir();
           estado=perder;
         }
-    push();
-    fill(0, 0, 0);
-    rect(width, height-30, width-tiempo, 50);
-    pop();
+
     textFont(fuente4);
     textSize(30);
     textAlign(CENTER);
     text(puntaje, 60, 50);
   } else if (estado==Nivel3) {
     background(167, 207, 159);
-    tiempo=map(millis(), 0, 60000, 0, width);
 
     for (  k=0; k<numTortuga; k++) {
       tortugas[k].dibujar();
@@ -261,29 +250,23 @@ function draw() {
       }
     }
 
-    if (puntaje>=15 && tiempo<width)
+    if (puntaje>=15)
     {
       estado=ganar;
       puntaje=0;
       puntajeMalo=0;
-    } else if (puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
+    } else if (puntajeMalo>10)
     {
       estado=perder;
       puntaje=0;
       puntajeMalo=0;
     }
 
-    if (puntaje>=15 && tiempo<width)
+    if (puntaje>=15)
     {
       estado=ganar;
-    } else if (puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
-    {
-      estado=perder;
-    }
-    push();
-    fill(0, 0, 0);
-    rect(width, height-30, width-tiempo, 50);
-    pop();
+    } 
+
     fill(0, 0, 0);
     textFont(fuente4);
     textSize(30);
@@ -372,9 +355,8 @@ function mouseReleased() {
   }
   return false;
 }
-/*
-function touchMoved() {
 
+function touchMoved() {
   if (estado==Nivel1) {
     puntaje+=10;
     if (dist(touch[0].x, touch[0].y, cortadores.x, cortadores.y)<40) {
@@ -383,12 +365,9 @@ function touchMoved() {
       background(255);
     }
   }
-
   if (estado==Nivel3) {
-
     for (l=0; l<numPez; l++) {
       for (m=0; m<numBolsa; m++) {
-
         if (dist(touch[0].x, touch[0].y, bolsas[m].x, bolsas[m].y)<20 && bolsas[m].viva) {
           bolsas[m].partir();
           puntaje++;
@@ -401,7 +380,7 @@ function touchMoved() {
     }
   }
   return false;
-}*/
+}
 
 
 function basura() {
@@ -503,10 +482,10 @@ function osito() {
       
       if (this.herida) {
         imageMode(CENTER);
-        image(this.osoHerido, this.x, this.y, 30, 30);
+        image(this.osoHerido, this.x, this.y, 40, 40);
       } else if (this.herida==false) {
         imageMode(CENTER);
-        image(this.oso, this.x, this.y, 30, 30);
+        image(this.oso, this.x, this.y, 40, 40);
       }
     }
   }
