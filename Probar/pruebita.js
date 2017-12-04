@@ -170,10 +170,14 @@ function draw() {
 
       if (puntaje>=15 && tiempo<width)
       {
+        puntaje=0;
+        puntajeMalo=0;
         estado=Intro2;
       } else if (puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
       {
         estado=perder;
+        puntaje=0;
+        puntajeMalo=0
       }
     }
     push();
@@ -193,12 +197,12 @@ function draw() {
     background(164, 214, 233);
     tiempo=map(millis(), 0, 60000, 0, width);
 
-    for (  j=0; j<numCazadores; j++) {
+    for (j=0; j<numCazadores; j++) {
       cazadores[j].dibujar();
       cazadores[j].mover();
       mamas.mover();
       osos.dibujar();        
-      if (dist(cazadores[j].x, cazadores[j].y, osos.x, osos.y)<10 && osos.viva) {
+      if (dist(cazadores[j].x, cazadores[j].y, osos.x, osos.y) < 10 && osos.viva) {
         osos.enfermar();
         osos.muerto++;
         if (osos.muerto>=5) {
@@ -474,8 +478,8 @@ function tortuguita() {
 
 function osito() {
 
-  this.x = 0;
-  this.y = height;
+  this.x = width/5;
+  this.y = 3*height/4;
   this.viva = true;
   this.oso= oso;
   this.osoHerido=osoHerido;
@@ -515,8 +519,8 @@ function osito() {
 }
 
 function MamaO() {
-  this.x=width;
-  this.y=0;
+  this.x=4*width/5;
+  this.y=height/8;
   this.mama1=mama1;
   this.mama2=mama2;
   this.seg=millis/1000;
