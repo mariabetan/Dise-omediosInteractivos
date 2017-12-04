@@ -174,11 +174,15 @@ cortadores.mover();
     arboles[i].morir();
     puntajeMalo++;
     }
-  
-     
-
     
-    if(puntaje>=15 && tiempo<width)
+    if(dist(touch[0].x, touch[0].y,cortadores.x,cortadores.y)<40){
+    puntaje++;
+    cortadores.rebotar();
+    
+  }
+  
+    
+    if(puntaje>=15 && tiempo<=width)
 {
   estado=Intro2;
 }
@@ -376,9 +380,7 @@ else if(estado==Nivel1) {
   if(dist(touch[0].x, touch[0].y,cortadores.x,cortadores.y)<40){
     puntaje++;
     cortadores.rebotar();
-   background(255);
     
-
   }
 }
 
@@ -405,7 +407,7 @@ function basura(){
   this.dirX=1;
   this.dirY=1;
   
-  this.dibujar=function()
+  this.dibujar=function()3
   {
     if (this.viva){
       imageMode(CENTER);
