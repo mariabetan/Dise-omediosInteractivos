@@ -2,7 +2,7 @@ var osos;
 var mamas;
 var arboles=[];
 var cazadores=[];
-var cortadores;
+var cortador;
 var tortugas=[];
 var peces=[];
 var bolsas=[];
@@ -100,7 +100,7 @@ for(i=0;i<numArboles;i++){
 
 mamas=new MamaO();
 osos= new osito();
-cortadores=new hombreCorta();
+cortador=new hombreCorta();
 
 } 
 
@@ -164,10 +164,10 @@ if(estado==intro){
 for(i=0;i<numArboles;i++){
   arboles[i].dibujar();
 
-cortadores.dibujar();
-cortadores.mover();
+cortador.dibujar();
+cortador.mover();
         
-  if(dist(arboles[i].x,arboles[i].y,cortadores.x,cortadores.y)<10 && arboles[i].viva){
+  if(dist(arboles[i].x,arboles[i].y,cortador.x,cortador.y)<10 && arboles[i].viva){
     arboles[i].morir();
     puntajeMalo++;
     }
@@ -638,6 +638,7 @@ function hombreCorta(){
     this.mover=function(){
       this.x=this.x+this.dirX;
       if(this.x<=0||this.x>=width || this.rebote==true){
+        this.rebote=false;
         this.dirX=-this.dirX;
         this.y=this.y+this.dirY
       
@@ -646,7 +647,7 @@ function hombreCorta(){
         this.y=this.y+this.dirY
         }
       }
-      this.rebote=false;
+      
       }
       
       this.rebotar=function(){
