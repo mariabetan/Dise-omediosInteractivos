@@ -631,20 +631,7 @@ function hombreMalo(){
         this.y=this.y+this.dirY;
         }
       }
-      if(this.rebote==true){
-        this.dirX=-this.dirX;
-        this.x=this.x+this.dirX;
-        this.rebote=false;
-      if(this.x<=0||this.x>=width){
-        this.dirX=-this.dirX;
-        this.y=this.y+this.dirY
-        if(this.y<=0||this.y>=height){
-        this.dirY=-this.dirY;
-        this.y=this.y+this.dirY;
-          
-        }
-      }
-      }
+
     }  
 }
 
@@ -683,6 +670,20 @@ function hombreCorta(){
         this.y=this.y+this.dirY;
           this.rebote=false;
         }
+              if(this.rebote==true){
+        this.dirX=-this.dirX;
+        this.x=this.x+this.dirX;
+        this.rebote=false;
+      if(this.x<=0||this.x>=width){
+        this.dirX=-this.dirX;
+        this.y=this.y+this.dirY
+        if(this.y<=0||this.y>=height){
+        this.dirY=-this.dirY;
+        this.y=this.y+this.dirY;
+          
+        }
+      }
+      }
       }
       
 }
