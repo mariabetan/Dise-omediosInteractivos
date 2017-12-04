@@ -516,8 +516,18 @@ function osito() {
     this.y=this.y+this.dirY;
     this.dirX=map(rotationX, -90, 90, -1,1);
     this.dirY=map(rotationY, -90, 90, -1,1);
-     this.x = constrain(this.x, 0,width);
-    this.y = constrain(this.y, 0,height);
+if(this.x>width){
+  this.x=20;
+}
+if(this.x<0){
+  this.x=width-20;
+}
+if(this.y>height){
+  this.y=20;
+}
+if(this.y<0){
+  this.y=height-20;
+}
   }
 }
 
