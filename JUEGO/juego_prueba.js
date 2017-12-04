@@ -210,12 +210,12 @@ function draw() {
     }
 
 
-    if (dist(osos.x, osos.y, mamas.x, mamas.y)<30)
+    if (dist(osos.x, osos.y, mamas.x, mamas.y)<40)
     {
       estado=Intro3;
     } 
 
-    if (osos.muerto>=5) {
+    if (osos.herido) {
       osos.morir();
       estado=perder;
     }
@@ -467,20 +467,19 @@ function tortuguita() {
 function osito() {
 
   this.x = width/5;
-  this.y = 3*height/4;
+  this.y = 3*height/4 -20;
   this.dirX=0;
   this.dirY=0;
   this.viva = true;
 
-  this.oso= oso;
-  this.osoHerido=osoHerido;
+  this.oso = oso;
+  this.osoHerido  =osoHerido;
   this.muerto=0;
   this.herida=false;
 
   this.dibujar=function()
   {
     if (this.viva) {
-
       if (this.herida) {
         imageMode(CENTER);
         image(this.osoHerido, this.x, this.y, 40, 40);
@@ -500,7 +499,7 @@ function osito() {
   }
 
   this.mover=function() {
-if(this.viva){
+if(this.viva||this.herida){
   
       this.x=this.x+this.dirX;
     this.y=this.y+this.dirY;
