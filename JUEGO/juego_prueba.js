@@ -653,5 +653,6 @@ function hombreCorta() {
 
   this.rebotar=function() {
     this.rebote=true;
+    
   }
 }
