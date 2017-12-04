@@ -394,7 +394,7 @@ function basura() {
 
   this.dibujar=function()
   {
-    if (this.viva) {
+    if (this.viva==true) {
       imageMode(CENTER);
       image(this.bolsa, this.x, this.y, 15, 15);
     }
@@ -430,7 +430,7 @@ function tortuguita() {
   this.enfermedad=0;
   this.dibujar=function()
   {
-    if (this.viva)
+    if (this.viva==true)
     {
       if (this.enfermita==false) {
         imageMode(CENTER);
@@ -528,12 +528,9 @@ function MamaO() {
   this.mover=function()
   {
     imageMode(CENTER);
-    if (this.seg%2==0)
-    {
+   
       image(this.mama1, this.x, this.y, 40, 40);
-    } else {
-      image(this.mama2, this.x, this.y, 40, 40);
-    }
+   
   }
 }
 
@@ -548,7 +545,7 @@ function pecesitos() {
   this.pezM=pezM;
   this.dibujar=function()
   {
-    if (this.viva) {
+    if (this.viva==true) {
       imageMode(CENTER);
       image(this.pez, this.x, this.y, 15, 15);
     } else {
@@ -581,7 +578,7 @@ function arbolito() {
   this.tronco=tronco;
   this.dibujar=function()
   {
-    if (this.viva) {
+    if (this.viva==true) {
       imageMode(CENTER);
       image(this.arbol, this.x, this.y, 40, 60);
     } else {
