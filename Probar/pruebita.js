@@ -345,7 +345,7 @@ else if(estado==Intro1) {
   }
 
 else if(estado==Nivel1) {
-  print(touch[0].x);
+  text(touch[0].x, width/2,height/2);
   if(dist(touch[0].x, touch[0].y,cortadores.x,cortadores.y)<40){
     puntaje++;
     cortadores.rebotar();
