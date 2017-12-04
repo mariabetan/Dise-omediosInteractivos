@@ -486,16 +486,12 @@ function osito() {
   this.osoHerido=osoHerido;
   this.muerto=0;
   this.herida=false;
-  this.seg=millis()/1000;
 
   this.dibujar=function()
   {
     if (this.viva) {
-      if (this.herida && this.seg%2!=0) {
-        imageMode(CENTER);
-        image(this.oso, this.x, this.y, 30, 30);
-      }
-      if (this.herida && this.seg%2==0) {
+      
+      if (this.herida) {
         imageMode(CENTER);
         image(this.osoHerido, this.x, this.y, 30, 30);
       } else if (this.herida==false) {
@@ -514,10 +510,10 @@ function osito() {
   }
 
   this.mover=function() {
-    print(rotationX);
+    print(pRotationX);
     print("----");
-    this.x=map(rotationX, -90, 90, 0, width);
-    this.y=map(rotationY, -90, 90, 0, height);
+    this.x=map(pRotationX, -90, 90, 0, width);
+    this.y=map(pRotationY, -90, 90, 0, height);
   }
 }
 
