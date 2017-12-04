@@ -108,45 +108,49 @@ function draw() {
     background(Introo);
   }
   if (estado==Intro1) {
+    background(104, 180, 111);
+    
     background(fondoV);
     fill(0, 0, 0);
     push();
-    textFont(fuente1, 20);
+    textFont(fuente1, 15);
     textAlign(CENTER);
-    text('¡No dejes que corten los árboles!', width/2, height/8);
+    text('¡No dejes que corten los árboles!', width/2, height/6);
     pop();
     push();
     textFont(fuente4, 15);
     textAlign(CENTER);
-    text('¡Dale un toque al malhechor!', width/2, height/4);
+    text('¡Dale un toque al malhechor!', width/2, height/3);
     pop();
   }
 
   if (estado==Intro2) {
+    background(164, 214, 233);
     background(fondoP);
     fill(0, 0, 0);
     push();
-    textFont(fuente1, 17);
+    textFont(fuente1, 14);
     textAlign(CENTER);
-    text('¡Ayuda a la cría a llegar con su mamá!', width/2, height/8);
+    text('¡Ayuda a la cría a llegar con su mamá!', width/2, height/6);
     pop();
     push();
-    textFont(fuente4, 15);
+    textFont(fuente4, 13);
     textAlign(CENTER);
     text('¡Gira el iPad y cuidado con los malos!', width/2, height/4);
     pop();
   } else if (estado==Intro3) {
+    background(167, 207, 159);
     background(fondoM);
     fill(0, 0, 0);
     push();
-    textFont(fuente1, 17);
+    textFont(fuente1, 15);
     textAlign(CENTER);
-    text('¡No dejes que la tortuga coma plástico!', width/2, height/8);
+    text('¡No dejes que la tortuga coma plástico!', width/2, height/6);
     pop();
     push();
     textFont(fuente4, 15);
     textAlign(CENTER);
-    text('¡Rompe las bolsas y ciudado, no vayas a matar a un pez!', width/2, height/7);
+    text('¡Rompe las bolsas y ciudado con los peces!', width/2, height/3);
     pop();
   } 
   else if (estado==Nivel1) {
@@ -189,7 +193,7 @@ function draw() {
     stroke(0);
     fill(0, 0, 0);
     textFont(fuente4);
-    textSize(20);
+    textSize(30);
     textAlign(CENTER);
     text(puntaje, 60, 50);
   } 
@@ -206,27 +210,26 @@ function draw() {
       if (dist(cazadores[j].x, cazadores[j].y, osos.x, osos.y) < 10 && osos.viva) {
         osos.enfermar();
         osos.muerto++;
-        if (osos.muerto>=5) {
-          osos.morir();
-          puntajeMalo++;
-        }
+    
       }
     }
 
 
-    if (dist(osos.x,osos.y,mamas.x,mamas.y)<10)
+    if (dist(osos.x,osos.y,mamas.x,mamas.y)<30)
     {
       estado=Intro3;
-    } else if (puntajeMalo>10 && tiempo>=width)
-    {
-      estado=perder;
-    }
+    } 
+    
+        if (osos.muerto>=5) {
+          osos.morir();
+          estado=perder;
+        }
     push();
     fill(0, 0, 0);
     rect(width, height-30, width-tiempo, 50);
     pop();
     textFont(fuente4);
-    textSize(20);
+    textSize(30);
     textAlign(CENTER);
     text(puntaje, 60, 50);
   } else if (estado==Nivel3) {
@@ -261,9 +264,13 @@ function draw() {
     if (puntaje>=15 && tiempo<width)
     {
       estado=ganar;
+      puntaje=0;
+      puntajeMalo=0;
     } else if (puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
     {
       estado=perder;
+      puntaje=0;
+      puntajeMalo=0;
     }
 
     if (puntaje>=15 && tiempo<width)
@@ -279,7 +286,7 @@ function draw() {
     pop();
     fill(0, 0, 0);
     textFont(fuente4);
-    textSize(20);
+    textSize(30);
     textAlign(CENTER);
     text(puntaje, 60, 50);
   } else if (estado==ganador)
@@ -484,6 +491,7 @@ function osito() {
   this.dirX=0;
   this.dirY=0;
   this.viva = true;
+  
   this.oso= oso;
   this.osoHerido=osoHerido;
   this.muerto=0;
