@@ -512,12 +512,11 @@ function osito() {
   }
 
   this.mover=function() {
-    print(pRotationX);
-    print("----");
-    this.dirX=map(rotationX, -90, 90, 0, width);
-    this.dirY=map(rotationY, -90, 90, 0, height);
     this.x=this.x+this.dirX;
     this.y=this.y+this.dirY;
+    this.dirX=map(rotationX, -90, 90, -3,3);
+    this.dirY=map(rotationY, -90, 90, -3,3);
+    print(this.dirX);
   }
 }
 
