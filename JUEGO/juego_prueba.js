@@ -342,19 +342,23 @@ function touchEnded() {
  return false;
  }*/
 
+function touchEnded(){
+  if (estado==Nivel1) {
+
+
+    if (dist(touch[0].x, tocuh[0].y, cortadores.x, cortadores.y)<40) {
+      puntaje1++;
+      cortadores.rebotar();
+    }
+  }
+}
+
 function mouseReleased() {
   if (estado==intro) {
     estado=Intro1;
   } else if (estado==Intro1) {
     estado=Nivel1;
-  } else if (estado==Nivel1) {
-
-
-    if (dist(mouseX, mouseY, cortadores.x, cortadores.y)<40) {
-      puntaje1++;
-      cortadores.rebotar();
-    }
-  } else if (estado==Intro2) {
+  }  else if (estado==Intro2) {
     estado=Nivel2;
   } else if (estado==Intro3) {
     estado=Nivel3;
