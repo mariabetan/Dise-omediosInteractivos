@@ -211,7 +211,7 @@ function draw() {
 
     if (dist(osos.x, osos.y, mamas.x, mamas.y)<40)
     {
-      estado=Intro3;
+      estado=ganador;
     } 
 
     if (osos.viva==false) {
@@ -220,7 +220,7 @@ function draw() {
     }
 
 
-  } else if (estado==Nivel3) {
+  } /*else if (estado==Nivel3) {
     background(167, 207, 159);
 
     for (  k=0; k<numTortuga; k++) {
@@ -271,7 +271,9 @@ function draw() {
     textSize(30);
     textAlign(CENTER);
     text(puntaje3, 60, 50);
-  } else if (estado==ganador)
+    
+  } */
+  else if (estado==ganador)
   {
       estado=ganar;
       puntaje1=0;
@@ -341,16 +343,7 @@ function touchEnded() {
  return false;
  }*/
 
-function touchEnded(){
-  if (estado==Nivel1) {
 
-
-    if (dist(touch[0].x, tocuh[0].y, cortadores.x, cortadores.y)<40) {
-      puntaje1++;
-      cortadores.rebotar();
-    }
-  }
-}
 
 function mouseReleased() {
   if (estado==intro) {
@@ -364,9 +357,18 @@ function mouseReleased() {
   } else if (estado==perdedor ||estado==ganador) {
     estado=intro;
   }
+  
+    if (estado==Nivel1) {
+
+
+    if (dist(touch[0].x, tocuh[0].y, cortadores.x, cortadores.y)<40) {
+      puntaje1++;
+      cortadores.rebotar();
+    }
+  }
   return false;
 }
-
+/*
 function touchMoved() {
 
   if (estado==Nivel3) {
@@ -385,7 +387,7 @@ function touchMoved() {
     }
   }
   return false;
-}
+}*/
 
 
 function basura() {
