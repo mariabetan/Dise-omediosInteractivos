@@ -45,9 +45,6 @@ var fuente2;
 var fuente3;
 var fuente4;
 var puntaje=0;
-var puntajeCopo;
-var puntajeEstrella;
-var puntajeFlor;
 var tiempo=0;
 var tiempo2=0;
 var puntajeMalo=0;
@@ -73,9 +70,6 @@ fondoM=loadImage('data/paisaje3.png');
 ganar=loadImage('data/ganaste.png');
 perder=loadImage('data/perder.png');
 Introo=loadImage('data/intro.png');
-puntajeEstrella=loadImage('data/puntajeEstrella.png');
-puntajeFlor=loadImage('data/puntajeFlor.png');
-puntajeCopo=loadImage('data/puntajeCopo.png');
 fuente1 = loadFont('data/Biko_Black.otf');
 fuente2 = loadFont('data/Biko_Bold.otf');
 fuente3 = loadFont('data/Biko_Light-Restricted.otf');
@@ -123,12 +117,12 @@ if(estado==intro){
     push();
     textFont(fuente1,20);
     textAlign(CENTER);
-    text('¡No dejes que corten los árboles!',width/2,width/10);
+    text('¡No dejes que corten los árboles!',width/2,height/8);
     pop();
      push();
     textFont(fuente4,15);
     textAlign(CENTER);
-    text('¡Dale un toque al malhechor!',width/2,width/7);
+    text('¡Dale un toque al malhechor!',width/2,height/4);
     pop();
   }
   
@@ -138,14 +132,14 @@ if(estado==intro){
     puntaje=0;
     fill(0,0,0);
     push();
-    textFont(fuente1,20);
+    textFont(fuente1,17);
     textAlign(CENTER);
-    text('¡Ayuda a la cría a llegar con su mamá!',width/2,width/10);
+    text('¡Ayuda a la cría a llegar con su mamá!',width/2,height/8);
     pop();
      push();
     textFont(fuente4,15);
     textAlign(CENTER);
-    text('¡Gira el iPad y cuidado con los malos!',width/2,width/7);
+    text('¡Gira el iPad y cuidado con los malos!',width/2,height/4);
     pop();
   }
    else if(estado==Intro3){
@@ -154,14 +148,14 @@ if(estado==intro){
     puntaje=0;
     fill(0,0,0);
     push();
-    textFont(fuente1,20);
+    textFont(fuente1,17);
     textAlign(CENTER);
-    text('¡No dejes que la tortuga coma plástico!',width/2,width/10);
+    text('¡No dejes que la tortuga coma plástico!',width/2,height/8);
     pop();
      push();
     textFont(fuente4,15);
     textAlign(CENTER);
-    text('¡Rompe las bolsas y ciudado, no vayas a matar a un pez!',width/2,width/7);
+    text('¡Rompe las bolsas y ciudado, no vayas a matar a un pez!',width/2,height/7);
     pop();
   }
   
@@ -181,19 +175,7 @@ cortadores.mover();
     puntajeMalo++;
     }
   
-      push();
-        tiempo=map(millis(),0,60000,0,width);
-        push();
-        fill(0,0,0);
-        rect(width,height-30,width-tiempo,50);
-        pop();
-            image(puntajeFlor,40,40,width/20,height/20);
-            stroke(0);
-            fill(0,0,0);
-                  textFont(fuente4);
-                  textSize(20);
-   textAlign(CENTER);
-    text(puntaje,60,50);
+     
 
     
     if(puntaje>=15 && tiempo<width)
@@ -206,6 +188,18 @@ else if(puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
 }
 
       }
+       push();
+        tiempo=map(millis(),0,60000,0,width);
+        push();
+        fill(0,0,0);
+        rect(width,height-30,width-tiempo,50);
+        pop();
+            stroke(0);
+            fill(0,0,0);
+                  textFont(fuente4);
+                  textSize(20);
+   textAlign(CENTER);
+    text(puntaje,60,50);
 }
   
    else if(estado==Nivel2){
@@ -226,15 +220,7 @@ osos.dibujar();
        }
     }
   }
-          push();
-        fill(0,0,0);
-        rect(width,height-30,width-tiempo,50);
-        pop();
-  image(puntajeCopo,40,40,width/20,height/20);
-      textFont(fuente4);
-   textSize(20);
-   textAlign(CENTER);
-     text(puntaje,60,50);
+         
      
      if(puntaje>=15 && tiempo<width)
 {
@@ -244,6 +230,14 @@ else if(puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
 {
   estado=perder;
 }
+ push();
+        fill(0,0,0);
+        rect(width,height-30,width-tiempo,50);
+        pop();
+      textFont(fuente4);
+   textSize(20);
+   textAlign(CENTER);
+     text(puntaje,60,50);
 }
 
 else if(estado==Nivel3){
@@ -276,17 +270,7 @@ for(  k=0;k<numTortuga;k++){
        
     }
 }
-            push();
-        fill(0,0,0);
-        rect(width,height-30,width-tiempo,50);
-        pop();
-    image(puntajeEstrella,40,40,width/20,height/20);
-    fill(0,0,0);
-    textFont(fuente4);
-   textSize(20);
-   textAlign(CENTER);
-     text(puntaje,60,50);
-     
+            
      if(puntaje>=15 && tiempo<width)
 {
   estado=ganar;
@@ -304,6 +288,16 @@ else if(puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
 {
   estado=perder;
 }
+push();
+        fill(0,0,0);
+        rect(width,height-30,width-tiempo,50);
+        pop();
+    fill(0,0,0);
+    textFont(fuente4);
+   textSize(20);
+   textAlign(CENTER);
+     text(puntaje,60,50);
+     
 
 }
   
@@ -670,8 +664,3 @@ function hombreCorta(){
       }
       
 }
-
-
-
-
-
