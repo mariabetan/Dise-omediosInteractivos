@@ -2,7 +2,7 @@ var osos;
 var mamas;
 var arboles=[];
 var cazadores=[];
-var cortador;
+var cortadores;
 var tortugas=[];
 var peces=[];
 var bolsas=[];
@@ -100,7 +100,7 @@ for(i=0;i<numArboles;i++){
 
 mamas=new MamaO();
 osos= new osito();
-cortador=new hombreCorta();
+cortadores=new hombreCorta();
 
 } 
 
@@ -111,7 +111,8 @@ if(estado==intro){
   }
  if(estado==Intro1){
     background(fondoV);
-
+        puntajeMalo=0;
+    puntaje=0;
     fill(0,0,0);
     push();
     textFont(fuente1,20);
@@ -127,7 +128,8 @@ if(estado==intro){
   
   if(estado==Intro2){
     background(fondoP);
-
+    puntajeMalo=0;
+    puntaje=0;
     fill(0,0,0);
     push();
     textFont(fuente1,17);
@@ -142,7 +144,8 @@ if(estado==intro){
   }
    else if(estado==Intro3){
     background(fondoM);
-
+        puntajeMalo=0;
+    puntaje=0;
     fill(0,0,0);
     push();
     textFont(fuente1,17);
@@ -156,7 +159,7 @@ if(estado==intro){
     pop();
   }
   
-     if(estado==Nivel1){
+     else if(estado==Nivel1){
 
     background(104,180,111);
 
@@ -164,10 +167,10 @@ if(estado==intro){
 for(i=0;i<numArboles;i++){
   arboles[i].dibujar();
 
-cortador.dibujar();
-cortador.mover();
+cortadores.dibujar();
+cortadores.mover();
         
-  if(dist(arboles[i].x,arboles[i].y,cortador.x,cortador.y)<10 && arboles[i].viva){
+  if(dist(arboles[i].x,arboles[i].y,cortadores.x,cortadores.y)<10 && arboles[i].viva){
     arboles[i].morir();
     puntajeMalo++;
     }
@@ -175,20 +178,22 @@ cortador.mover();
      
 
     
-    if(puntaje>=15)
+    if(puntaje>=15 && tiempo<width)
 {
   estado=Intro2;
-          puntajeMalo=0;
-    puntaje=0;
 }
-else if(puntaje<15||puntajeMalo>10)
+else if(puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
 {
   estado=perder;
-          puntajeMalo=0;
-    puntaje=0;
 }
 
       }
+       push();
+        tiempo=map(millis(),0,60000,0,width);
+        push();
+        fill(0,0,0);
+        rect(width,height-30,width-tiempo,50);
+        pop();
             stroke(0);
             fill(0,0,0);
                   textFont(fuente4);
@@ -197,9 +202,9 @@ else if(puntaje<15||puntajeMalo>10)
     text(puntaje,60,50);
 }
   
-if(estado==Nivel2){
+   else if(estado==Nivel2){
     background(164,214,233);
-
+        tiempo=map(millis(),0,60000,0,width);
 
 for(  j=0;j<numCazadores;j++){
   cazadores[j].dibujar();
@@ -217,18 +222,18 @@ osos.dibujar();
   }
          
      
-     if(puntaje>=15)
+     if(puntaje>=15 && tiempo<width)
 {
   estado=Intro3;
-          puntajeMalo=0;
-    puntaje=0;
 }
-else if(puntaje<15||puntajeMalo>10)
+else if(puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
 {
   estado=perder;
-          puntajeMalo=0;
-    puntaje=0;
 }
+ push();
+        fill(0,0,0);
+        rect(width,height-30,width-tiempo,50);
+        pop();
       textFont(fuente4);
    textSize(20);
    textAlign(CENTER);
@@ -266,27 +271,27 @@ for(  k=0;k<numTortuga;k++){
     }
 }
             
-     if(puntaje>=15)
+     if(puntaje>=15 && tiempo<width)
 {
   estado=ganar;
-          puntajeMalo=0;
-    puntaje=0;
 }
-else if(puntaje<15||puntajeMalo>10)
+else if(puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
 {
   estado=perder;
-          puntajeMalo=0;
-    puntaje=0;
 }
 
-if(puntaje>=15)
+if(puntaje>=15 && tiempo<width)
 {
   estado=ganar;
-          puntajeMalo=0;
-    puntaje=0;
 }
-
-
+else if(puntaje<15 && tiempo>=width||puntajeMalo>10 && tiempo>=width)
+{
+  estado=perder;
+}
+push();
+        fill(0,0,0);
+        rect(width,height-30,width-tiempo,50);
+        pop();
     fill(0,0,0);
     textFont(fuente4);
    textSize(20);
@@ -335,7 +340,8 @@ if(puntaje>=15)
 }
 
 
-function touchMoved() {
+
+function touchStarted() {
   if (estado==intro) {
     estado=Intro1;
   } 
@@ -346,9 +352,10 @@ else if(estado==Intro1) {
 
 else if(estado==Nivel1) {
 
-  if(dist(touch[0].x, touch[0].y,cortador.x,cortador.y)<40){
+  if(dist(touch[0].x, touch[0].y,cortadores.x,cortadores.y)<40){
     puntaje++;
-
+    cortadores.rebotar();
+   background(255);
     
 
   }
@@ -365,8 +372,10 @@ else if(estado==Intro3) {
 else if(estado==perdedor ||estado==ganador) {
     estado=intro;
   }
-  
-  
+  return false;
+}
+
+function touchMoved() {
     if (estado==Nivel3) {
 
     for(l=0;l<numPez;l++){
@@ -638,16 +647,15 @@ function hombreCorta(){
     this.mover=function(){
       this.x=this.x+this.dirX;
       if(this.x<=0||this.x>=width || this.rebote==true){
-        this.rebote=false;
         this.dirX=-this.dirX;
         this.y=this.y+this.dirY
       
         if(this.y<=0||this.y>=height){
         this.dirY=-this.dirY;
-        this.y=this.y+this.dirY
+        this.y=this.y+this.dirY;
         }
       }
-      
+      this.rebote=false;
       }
       
       this.rebotar=function(){
