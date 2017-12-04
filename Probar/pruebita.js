@@ -640,7 +640,7 @@ function hombreMalo(){
 function hombreCorta(){
   this.x = random(0, width);
   this.y = random(0, height);
-  this.dirX=0.1;
+  this.dirX=1;
   this.dirY=10;
   this.leñador=leñador;
   this.rebote=false;
@@ -677,7 +677,7 @@ function hombreCorta(){
         this.rebote=false;
       if(this.x<=0||this.x>=width){
         this.dirX=-this.dirX;
-        this.y=this.y+this.dirY
+        this.y=this.y+this.dirY;
         if(this.y<=0||this.y>=height){
         this.dirY=-this.dirY;
         this.y=this.y+this.dirY;
@@ -694,9 +694,3 @@ function hombreCorta(){
       }
       
 }
-
-
-
-
-
-
