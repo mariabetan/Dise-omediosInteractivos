@@ -349,6 +349,8 @@ else if(estado==Nivel1) {
   if(dist(touch[0].x, touch[0].y,cortadores.x,cortadores.y)<40){
     puntaje++;
 
+    
+
   }
 }
 
@@ -641,6 +643,7 @@ function hombreCorta(){
       
         if(this.y<=0||this.y>=height){
         this.dirY=-this.dirY;
+        this.y=this.y+this.dirY
         }
       }
       this.rebote=false;
