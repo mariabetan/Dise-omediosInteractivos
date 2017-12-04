@@ -204,8 +204,7 @@ function draw() {
       osos.dibujar();
       osos.mover();
       if (dist(cazadores[j].x, cazadores[j].y, osos.x, osos.y) < 20 && osos.viva) {
-        osos.enfermar();
-        osos.muerto++;
+        osos.morir();
       }
     }
 
@@ -215,8 +214,8 @@ function draw() {
       estado=Intro3;
     } 
 
-    if (osos.herido) {
-      osos.morir();
+    if (osos.viva==false) {
+      
       estado=perder;
     }
 
