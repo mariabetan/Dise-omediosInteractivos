@@ -44,8 +44,12 @@ var fuente1;
 var fuente2;
 var fuente3;
 var fuente4;
-var puntaje=0;
-var puntajeMalo=0;
+var puntaje1=0;
+var puntaje2=0;
+var puntaje3=0;
+var puntajeMalo1=0;
+var puntajeMalo2=0;
+var puntajeMalo3=0;
 
 
 function preload() {
@@ -76,7 +80,7 @@ function preload() {
 
 function setup() { 
   createCanvas(windowWidth, windowHeight);
-  estado = Intro;
+  estado = intro;
 
   //console.log("hello");
 
@@ -107,7 +111,7 @@ function draw() {
   }
   if (estado==Intro1) {
     background(104, 180, 111);
-    
+
     background(fondoV);
     fill(0, 0, 0);
     push();
@@ -150,8 +154,7 @@ function draw() {
     textAlign(CENTER);
     text('¡Rompe las bolsas y ciudado con los peces!', width/2, height/3);
     pop();
-  } 
-  else if (estado==Nivel1) {
+  } else if (estado==Nivel1) {
 
     background(104, 180, 111);
 
@@ -164,23 +167,23 @@ function draw() {
 
       if (dist(arboles[i].x, arboles[i].y, cortadores.x, cortadores.y)<10 && arboles[i].viva) {
         arboles[i].morir();
-        puntajeMalo++;
+        puntajeMalo1++;
       }
 
 
 
 
-      if (puntaje>15)
+      if (puntaje1>15)
       {
 
         estado=Intro2;
-        puntaje=0;
-        puntajeMalo=0;
-      } else if (puntajeMalo>10)
+
+
+      } else if (puntajeMalo1>10)
       {
         estado=perder;
-        puntaje=0;
-        puntajeMalo=0
+
+
       }
     }
 
@@ -189,9 +192,8 @@ function draw() {
     textFont(fuente4);
     textSize(30);
     textAlign(CENTER);
-    text(puntaje, 60, 50);
-  } 
-  else if (estado==Nivel2) {
+    text(puntaje1, 60, 50);
+  } else if (estado==Nivel2) {
     background(164, 214, 233);
 
 
@@ -204,25 +206,21 @@ function draw() {
       if (dist(cazadores[j].x, cazadores[j].y, osos.x, osos.y) < 20 && osos.viva) {
         osos.enfermar();
         osos.muerto++;
-    
       }
     }
 
 
-    if (dist(osos.x,osos.y,mamas.x,mamas.y)<30)
+    if (dist(osos.x, osos.y, mamas.x, mamas.y)<30)
     {
       estado=Intro3;
     } 
-    
-        if (osos.muerto>=5) {
-          osos.morir();
-          estado=perder;
-        }
 
-    textFont(fuente4);
-    textSize(30);
-    textAlign(CENTER);
-    text(puntaje, 60, 50);
+    if (osos.muerto>=5) {
+      osos.morir();
+      estado=perder;
+    }
+
+
   } else if (estado==Nivel3) {
     background(167, 207, 159);
 
@@ -236,32 +234,35 @@ function draw() {
           bolsas[m].dibujar();
           bolsas[m].mover();
 
-       if (dist(tortugas[k].x, tortugas[k].y, bolsas[m].x, bolsas[m].y)<10 && bolsas[m].viva) {
+          if (dist(tortugas[k].x, tortugas[k].y, bolsas[m].x, bolsas[m].y)<10 && bolsas[m].viva) {
             bolsas[m].partir();
             tortugas[k].enfermar();
             tortugas.enfermedad++;
             if (tortugas.enfermedad>5) {
               tortugas.morir();
-              puntajeMalo++;
+              puntajeMalo3++;
             }
           }
         }
       }
     }
 
-    if (puntaje>=15)
+    if (puntaje3>=15)
     {
       estado=ganar;
-      puntaje=0;
-      puntajeMalo=0;
-    } else if (puntajeMalo>10)
+      puntaje1=0;
+      puntajeMalo1=0;
+      puntaje2=0;
+      puntajeMalo2=0;
+      puntaje3=0;
+      puntajeMalo3=0;
+    } else if (puntajeMalo3>10)
     {
       estado=perder;
-      puntaje=0;
-      puntajeMalo=0;
+
     }
 
-    if (puntaje>=15)
+    if (puntaje3>=15)
     {
       estado=ganar;
     } 
@@ -270,11 +271,16 @@ function draw() {
     textFont(fuente4);
     textSize(30);
     textAlign(CENTER);
-    text(puntaje, 60, 50);
+    text(puntaje3, 60, 50);
   } else if (estado==ganador)
   {
-    puntajeMalo=0;
-    puntaje=0;
+      estado=ganar;
+      puntaje1=0;
+      puntajeMalo1=0;
+      puntaje2=0;
+      puntajeMalo2=0;
+      puntaje3=0;
+      puntajeMalo3=0;
     background(ganar);
     fill(0, 0, 0);
     push();
@@ -289,8 +295,13 @@ function draw() {
     pop();
   } else if (estado==perdedor)
   {
-    puntajeMalo=0;
-    puntaje=0;
+      estado=ganar;
+      puntaje1=0;
+      puntajeMalo1=0;
+      puntaje2=0;
+      puntajeMalo2=0;
+      puntaje3=0;
+      puntajeMalo3=0;
     background(perder);
     fill(0, 0, 0);
     push();
@@ -309,27 +320,27 @@ function draw() {
 
 /*
 function touchEnded() {
-  if (estado==intro) {
-    estado=Intro1;
-  } else if (estado==Intro1) {
-    estado=Nivel1;
-  } else if (estado==Nivel1) {
-    text(touch[0].x, width/2, height/2);
-    puntaje++;
-    if (dist(touch[0].x, touch[0].y, cortadores.x, cortadores.y)<40) {
-      puntaje++;
-      cortadores.rebotar();
-      background(255);
-    }
-  } else if (estado==Intro2) {
-    estado=Nivel2;
-  } else if (estado==Intro3) {
-    estado=Nivel3;
-  } else if (estado==perdedor ||estado==ganador) {
-    estado=intro;
-  }
-  return false;
-}*/
+ if (estado==intro) {
+ estado=Intro1;
+ } else if (estado==Intro1) {
+ estado=Nivel1;
+ } else if (estado==Nivel1) {
+ text(touch[0].x, width/2, height/2);
+ puntaje++;
+ if (dist(touch[0].x, touch[0].y, cortadores.x, cortadores.y)<40) {
+ puntaje++;
+ cortadores.rebotar();
+ background(255);
+ }
+ } else if (estado==Intro2) {
+ estado=Nivel2;
+ } else if (estado==Intro3) {
+ estado=Nivel3;
+ } else if (estado==perdedor ||estado==ganador) {
+ estado=intro;
+ }
+ return false;
+ }*/
 
 function mouseReleased() {
   if (estado==intro) {
@@ -337,11 +348,10 @@ function mouseReleased() {
   } else if (estado==Intro1) {
     estado=Nivel1;
   } else if (estado==Nivel1) {
-    print("clic");
-   //text(touch[0].x, width/2, height/2);
-    //puntaje++;
-    if (dist(mouseX, mouseY, cortadores.x, cortadores.y)<30) {
-      puntaje++;
+
+
+    if (dist(mouseX, mouseY, cortadores.x, cortadores.y)<40) {
+      puntaje1++;
       cortadores.rebotar();
     }
   } else if (estado==Intro2) {
@@ -355,25 +365,18 @@ function mouseReleased() {
 }
 
 function touchMoved() {
-  if (estado==Nivel1) {
-    puntaje+=10;
-    if (dist(touch[0].x, touch[0].y, cortadores.x, cortadores.y)<40) {
-      puntaje++;
-      cortadores.rebotar();
-      background(255);
-    }
-  }
+
   if (estado==Nivel3) {
     for (l=0; l<numPez; l++) {
       for (m=0; m<numBolsa; m++) {
-        
+
         if (dist(touch[0].x, touch[0].y, bolsas[m].x, bolsas[m].y)<20 && bolsas[m].viva) {
           bolsas[m].partir();
-          puntaje++;
+          puntaje3++;
         }
         if (dist(touch[0].x, touch[0].y, peces[l].x, peces[l].y)<20 && peces[l].viva) {
           peces[l].morir();
-          puntajeMalo++;
+          puntajeMalo3++;
         }
       }
     }
@@ -405,13 +408,12 @@ function basura() {
   this.mover=function()
   {
     this.x=this.x+this.dirX;
-     this.y=this.y+this.dirY;
+    this.y=this.y+this.dirY;
     if (this.x>=width||this.x<=0) {
-     // this.y=this.y+this.dirY;
+      // this.y=this.y+this.dirY;
       this.dirX=-this.dirX;
       if (this.y>=height||this.y<=0) {
         this.dirY=-this.dirY;
-       
       }
     }
   }
@@ -469,7 +471,7 @@ function osito() {
   this.dirX=0;
   this.dirY=0;
   this.viva = true;
-  
+
   this.oso= oso;
   this.osoHerido=osoHerido;
   this.muerto=0;
@@ -478,7 +480,7 @@ function osito() {
   this.dibujar=function()
   {
     if (this.viva) {
-      
+
       if (this.herida) {
         imageMode(CENTER);
         image(this.osoHerido, this.x, this.y, 40, 40);
@@ -498,25 +500,28 @@ function osito() {
   }
 
   this.mover=function() {
-    this.x=this.x+this.dirX;
+if(this.viva){
+  
+      this.x=this.x+this.dirX;
     this.y=this.y+this.dirY;
-    this.dirX=map(rotationX, -90, 90, 1,-1);
-    this.dirY=map(rotationY, -90, 90, 1,-1);
-if(this.x>width){
-  this.x=20;
-}
-if(this.x<0){
-  this.x=width-20;
-}
-if(this.y>height){
-  this.y=20;
-}
-if(this.y<0){
-  this.y=height-20;
-}
+    this.dirX=map(rotationX, -90, 90, 1, -1);
+    this.dirY=map(rotationY, -90, 90, 1, -1);
+    if (this.x>width) {
+      this.x=20;
+    }
+    if (this.x<0) {
+      this.x=width-20;
+    }
+    if (this.y>height) {
+      this.y=20;
+    }
+    if (this.y<0) {
+      this.y=height-20;
+    }
+  
   }
 }
-
+}
 function MamaO() {
   this.x=4*width/5;
   this.y=height/8;
