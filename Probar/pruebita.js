@@ -313,7 +313,7 @@ function draw() {
 }
 
 
-
+/*
 function touchEnded() {
   if (estado==intro) {
     estado=Intro1;
@@ -335,7 +335,7 @@ function touchEnded() {
     estado=intro;
   }
   return false;
-}
+}*/
 
 function mouseReleased() {
   if (estado==intro) {
@@ -360,11 +360,10 @@ function mouseReleased() {
   }
   return false;
 }
-
+/*
 function touchMoved() {
 
   if (estado==Nivel1) {
-    text(touch[0].x, width/2, height/2);
     puntaje+=10;
     if (dist(touch[0].x, touch[0].y, cortadores.x, cortadores.y)<40) {
       puntaje++;
@@ -390,7 +389,7 @@ function touchMoved() {
     }
   }
   return false;
-}
+}*/
 
 
 function basura() {
