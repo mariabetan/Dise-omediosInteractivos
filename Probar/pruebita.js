@@ -156,7 +156,7 @@ if(estado==intro){
     pop();
   }
   
-     else if(estado==Nivel1){
+     if(estado==Nivel1){
 
     background(104,180,111);
 
@@ -197,7 +197,7 @@ else if(puntaje<15||puntajeMalo>10)
     text(puntaje,60,50);
 }
   
-   else if(estado==Nivel2){
+if(estado==Nivel2){
     background(164,214,233);
 
 
@@ -346,7 +346,7 @@ else if(estado==Intro1) {
 
 else if(estado==Nivel1) {
 
-  if(dist(touch[0].x, touch[0].y,cortadores.x,cortadores.y)<40){
+  if(dist(touch[0].x, touch[0].y,cortador.x,cortador.y)<40){
     puntaje++;
 
     
