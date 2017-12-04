@@ -343,7 +343,17 @@ function touchEnded() {
  return false;
  }*/
 
+function touchEnded()
+{
+      if (estado==Nivel1) {
 
+
+    if (dist(touch[0].x, touch[0].y, cortadores.x, cortadores.y)<40) {
+      puntaje1++;
+      cortadores.rebotar();
+    }
+  }
+}
 
 function mouseReleased() {
   if (estado==intro) {
@@ -361,7 +371,7 @@ function mouseReleased() {
     if (estado==Nivel1) {
 
 
-    if (dist(touch[0].x, tocuh[0].y, cortadores.x, cortadores.y)<40) {
+    if (dist(touch[0].x, touch[0].y, cortadores.x, cortadores.y)<40) {
       puntaje1++;
       cortadores.rebotar();
     }
