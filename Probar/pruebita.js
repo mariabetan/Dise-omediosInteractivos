@@ -337,6 +337,30 @@ function touchEnded() {
   return false;
 }
 
+function mouseReleased() {
+  if (estado==intro) {
+    estado=Intro1;
+  } else if (estado==Intro1) {
+    estado=Nivel1;
+  } else if (estado==Nivel1) {
+    print("clic");
+   //text(touch[0].x, width/2, height/2);
+    //puntaje++;
+    if (dist(mouseX, mouseY, cortadores.x, cortadores.y)<40) {
+      puntaje++;
+      cortadores.rebotar();
+      background(255);
+    }
+  } else if (estado==Intro2) {
+    estado=Nivel2;
+  } else if (estado==Intro3) {
+    estado=Nivel3;
+  } else if (estado==perdedor ||estado==ganador) {
+    estado=intro;
+  }
+  return false;
+}
+
 function touchMoved() {
 
   if (estado==Nivel1) {
