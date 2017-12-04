@@ -76,7 +76,7 @@ function preload() {
 
 function setup() { 
   createCanvas(windowWidth, windowHeight);
-  estado = intro;
+  estado = Nivel3;
 
   //console.log("hello");
 
@@ -170,11 +170,12 @@ function draw() {
 
 
 
-      if (puntaje>=15)
+      if (puntaje>15)
       {
+
+        estado=Intro2;
         puntaje=0;
         puntajeMalo=0;
-        estado=Intro2;
       } else if (puntajeMalo>10)
       {
         estado=perder;
@@ -200,7 +201,7 @@ function draw() {
       mamas.mover();
       osos.dibujar();
       osos.mover();
-      if (dist(cazadores[j].x, cazadores[j].y, osos.x, osos.y) < 10 && osos.viva) {
+      if (dist(cazadores[j].x, cazadores[j].y, osos.x, osos.y) < 20 && osos.viva) {
         osos.enfermar();
         osos.muerto++;
     
@@ -235,10 +236,8 @@ function draw() {
           bolsas[m].dibujar();
           bolsas[m].mover();
 
-          if (dist(tortugas[k].x, tortugas[k].y, peces[l].x, peces[l].y)<10&& peces[l].viva) {
-            peces[l].morir();
-          } else if (dist(tortugas[k].x, tortugas[k].y, bolsas[m].x, bolsas[m].y)<10 && bolsas[m].viva) {
-            bolsas[m].partirse();
+       if (dist(tortugas[k].x, tortugas[k].y, bolsas[m].x, bolsas[m].y)<10 && bolsas[m].viva) {
+            bolsas[m].partir();
             tortugas[k].enfermar();
             tortugas.enfermedad++;
             if (tortugas.enfermedad>5) {
@@ -368,6 +367,7 @@ function touchMoved() {
   if (estado==Nivel3) {
     for (l=0; l<numPez; l++) {
       for (m=0; m<numBolsa; m++) {
+        
         if (dist(touch[0].x, touch[0].y, bolsas[m].x, bolsas[m].y)<20 && bolsas[m].viva) {
           bolsas[m].partir();
           puntaje++;
@@ -388,8 +388,8 @@ function basura() {
   this.y = random(0, height);
   this.viva = true;
   this.bolsa= bolsa;
-  this.dirX=1;
-  this.dirY=1;
+  this.dirX=0.01;
+  this.dirY=0.01;
 
   this.dibujar=function()
   {
@@ -402,17 +402,17 @@ function basura() {
   this.partir=function()
   {
     this.viva=false;
-    puntaje++;
   }
   this.mover=function()
   {
-    this.x=this.x+dirX;
+    this.x=this.x+this.dirX;
+     this.y=this.y+this.dirY;
     if (this.x>=width||this.x<=0) {
-      this.y=this.y+this.dirY;
+     // this.y=this.y+this.dirY;
       this.dirX=-this.dirX;
       if (this.y>=height||this.y<=0) {
         this.dirY=-this.dirY;
-        this.y=this.y+this.dirY;
+       
       }
     }
   }
@@ -442,7 +442,7 @@ function tortuguita() {
     }
   }
   this.mover=function() {
-    this.x=this.x+dirX;
+    this.x=this.x+this.dirX;
     if (this.x<=0 ||this.x>width) {
       this.y=this.y+this.dirY;
       this.dirX=-this.dirX;
@@ -454,8 +454,8 @@ function tortuguita() {
   }
 
   this.enfermar=function() {
-    enfermita=true;
-    enfermedad++;
+    this.enfermita=true;
+    this.enfermedad++;
   }
   this.morir=function()
   {
@@ -501,8 +501,8 @@ function osito() {
   this.mover=function() {
     this.x=this.x+this.dirX;
     this.y=this.y+this.dirY;
-    this.dirX=map(rotationX, -90, 90, -1,1);
-    this.dirY=map(rotationY, -90, 90, -1,1);
+    this.dirX=map(rotationX, -90, 90, 1,-1);
+    this.dirY=map(rotationY, -90, 90, 1,-1);
 if(this.x>width){
   this.x=20;
 }
@@ -541,8 +541,8 @@ function pecesitos() {
   this.x = random(0, width);
   this.y = random(0, height);
   this.viva = true;
-  this.dirX=-1;
-  this.dirY=-1;
+  this.dirX=-0.1;
+  this.dirY=-0.1;
   this.pez= pez;
   this.pezM=pezM;
   this.dibujar=function()
@@ -563,7 +563,7 @@ function pecesitos() {
 
     if (this.y>height||this.y<=0) {
       this.x=this.x+this.dirX;
-      this.dirY=-this-dirY;
+      this.dirY=-this.dirY;
       if (this.x>width||this.x<=0) {
         this.dirX=-this.dirX;
         this.x=this.x+this.dirX;
