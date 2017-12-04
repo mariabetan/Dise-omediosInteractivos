@@ -370,6 +370,18 @@ else if(estado==perdedor ||estado==ganador) {
 }
 
 function touchMoved() {
+  
+  if(estado==Nivel1) {
+  text(touch[0].x, width/2,height/2);
+  if(dist(touch[0].x, touch[0].y,cortadores.x,cortadores.y)<40){
+    puntaje++;
+    cortadores.rebotar();
+   background(255);
+    
+
+  }
+}
+
     if (estado==Nivel3) {
 
     for(l=0;l<numPez;l++){
