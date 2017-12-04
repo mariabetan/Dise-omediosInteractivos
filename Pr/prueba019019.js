@@ -514,8 +514,8 @@ function osito() {
   this.mover=function() {
     this.x=this.x+this.dirX;
     this.y=this.y+this.dirY;
-    this.dirX=map(rotationX, -90, 90, -3,3);
-    this.dirY=map(rotationY, -90, 90, -3,3);
+    this.dirX=map(rotationX, -90, 90, -1,1);
+    this.dirY=map(rotationY, -90, 90, -1,1);
      this.x = constrain(this.x, 0,width);
     this.y = constrain(this.y, 0,height);
   }
