@@ -109,7 +109,7 @@ function setup() {
   }
   //oso mamá y bebé
   oso1= new osito();
-  mamaO=new mamaOso();
+  mamaO=new MamaOso();
 
  
 
